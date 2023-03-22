@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset ="UTF-8">
+	<title>FLASHCARDS APP</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 	crossorigin="anonymous">
+
+	<style>
+
+        
+          
+        .clickable {
+            height: 50px;
+            border: 2px solid black;
+        }
+          
+        .clickable:hover {
+            background: lightblue;
+        }
+        .center {
+			display: flex;
+			justify-content: center;
+		}
+		.button1 {width: 250px;
+				  height: 50px;
+				  align-content: center;}
+		.button2 {width: 100px;
+				  height: 50px;
+				  align-content: center;}
+
+    </style>
+	
+
+
+</head>
+<body>
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="display-4">FLASH CARDS APP</h1>
+	</div>
+	<div class="row">
+		<div class="col-md-8">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <div class="container-fluid">
+			    <a class="navbar-brand" href="#">MENU</a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+			      <ul class="navbar-nav">
+				<li class="nav-item">
+				  <a class="nav-link active" aria-current="page" href="/home">HOME</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/deck">DECKS</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/add_deck">ADD DECK</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/changedeck">CHANGE/DELETE DECK</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/viewscore">VIEW SCORE</a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="/logout">LOG OUT</a>
+				</li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+		</div>
+		<div class="mb-3">
+			    <label for="exampleInputName" class="form-label">DECK NAME:{{deckname}}</label>
+		</div>
+		{% if succ=="1"%}
+		<div class="alert alert-success" role="alert">
+		  You answered the question correctly
+		</div>
+		{% endif %}
+		{% if succ=="2"%}
+		<div class="alert alert-danger" role="alert">
+		  You answered the question incorrectly
+		</div>
+		{% endif %}
+		{% if th=="1" %}
+		<div class="alert alert-success" role="alert">
+		 Thank you for your feedback.
+		</div>
+		{% endif %}
+
+		<form method="POST">
+		<div class="center">
+			
+			<div class="card text-center" style="width: 40rem;">
+			  <div class="card-body">
+			    <h5 class="card-title" ><p class="text-center">Flashcard</p></h5>
+			    <p class="card-text"><p class="text-center">{{question}}</p></p>
+			  </div>
+			  <ul class="list-group list-group-flush" >
+			    <li class="list-group-item"><input type="radio" class="btn-check button1" name="ans" value="{{o1}}" id="option1" autocomplete="off" checked><label class="btn btn-primary button1" for="option1">{{o1}}</label></li>
+			    <li class="list-group-item"><input type="radio" class="btn-check button1" name="ans" value="{{o2}}" id="option2" autocomplete="off" checked><label class="btn btn-primary button1" for="option2">{{o2}}</label></li>
+			    <li class="list-group-item"><input type="radio" class="btn-check button1" name="ans" value="{{o3}}" id="option3" autocomplete="off" checked><label class="btn btn-primary button1" for="option3">{{o3}}</label></li>
+			    <li class="list-group-item"><input type="radio" class="btn-check button1" name="ans" value="{{o4}}" id="option4" autocomplete="off" checked><label class="btn btn-primary button1" for="option4">{{o4}}</label></li>
+			  </ul>
+			  <div class="card-body">
+			  	<button type="submit" class="btn btn-success button1" name="chk" value="check" ><p class="text-center">Check Answer</p></button>
+			  	<button type="submit" class="btn btn-success button1" name="chk" value="next"><p class="text-center">Next Card</p></button>
+			  	
+			 
+			  </div>
+			  {% if succ=="1" or succ=="2"%}
+			  <div>
+			  	<h3>How difficult was the card</h3>
+			  	<button type="submit" class="btn btn-success button2" name="hard" value="easy"><p class="text-center">Easy</p></button>
+			  	<button type="submit" class="btn btn-success button2" name="hard" value="medium"><p class="text-center">Medium</p></button>
+			  	<button type="submit" class="btn btn-success button2" name="hard" value="hard"><p class="text-center">Hard</p></button>
+			  	
+			  </div>
+			  {% endif %}
+			  <div>
+			  <br>
+				<button type="button" class="btn btn-success button1" name="hard" value="easy" onclick="window.location.href='/deck'"><p class="text-center">END GAME</p></button>
+			</div>
+			</div>
+		</form>        
+
+
+
+
+
+		</div>
+		
+	</div>
+
+</div>
+
+</body>
+
+</html>
